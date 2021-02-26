@@ -1,8 +1,8 @@
 {
     "required_api_version": "^2.0.0",
     "name": "Meet",
-    "description": "Extension Description",
-    "developer_name": "randomCharacter",
+    "description": "Extension for creating and joining Google Meet meetings",
+    "developer_name": "Mario Perić",
     "icon": "images/icon.png",
     "options": {
         "query_debounce": 0.1
