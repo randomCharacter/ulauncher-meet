@@ -44,7 +44,7 @@ class PreferencesLoadListener(EventListener):
 
 class PreferencesUpdateListener(EventListener):
     def on_event(self, event, extension):
-        if event.id == 'shortcuts':
+        if event.id == 'saved_meetings':
             update_saved_meetings(event.new_value)
 
 
