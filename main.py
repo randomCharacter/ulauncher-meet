@@ -24,6 +24,10 @@ def update_saved_meetings(meetings_string: str) -> List[Meeting]:
         saved_meetings = None
 
 
+def in_saved_meeting(string: str, meeting: Meeting) -> bool:
+    return string.lower() in meeting.name.lower() or string.lower() in meeting.id.lower()
+
+
 class MeetExtension(Extension):
 
     def __init__(self):
@@ -58,6 +62,11 @@ class KeywordQueryEventListener(EventListener):
                                              name='New',
                                              description='Start new meeting',
                                              on_enter=OpenUrlAction('https://meet.google.com/new')))
+        if len(user_inputs) == 1:
+            for meeting in saved_meetings:
+                items.append(ExtensionResultItem(icon='images/icon.png', name='Join %s' % meeting.name,
+                                                 description='Join https://meet.google.com/%s' % meeting.id,
+                                                 on_enter=OpenUrlAction('https://meet.google.com/%s' % meeting.id)))
         if len(user_inputs) > 1:
             meet_id = user_inputs[1]
             if saved_meetings is None:
@@ -67,7 +76,7 @@ class KeywordQueryEventListener(EventListener):
                                                  on_enter=DoNothingAction()))
             else:
                 for meeting in saved_meetings:
-                    if meet_id in meeting.name:
+                    if in_saved_meeting(meet_id, meeting):
                         items.append(ExtensionResultItem(icon='images/icon.png', name='Join %s' % meeting.name,
                                                          description='Join https://meet.google.com/%s' % meeting.id,
                                                          on_enter=OpenUrlAction('https://meet.google.com/%s' % meeting.id)))
