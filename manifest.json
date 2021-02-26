@@ -1,0 +1,26 @@
+{
+    "required_api_version": "^2.0.0",
+    "name": "Meet",
+    "description": "Extension Description",
+    "developer_name": "randomCharacter",
+    "icon": "images/icon.png",
+    "options": {
+        "query_debounce": 0.1
+    },
+    "preferences": [
+        {
+            "id": "meet_kw",
+            "type": "keyword",
+            "name": "Meet",
+            "description": "Extension keyword",
+            "default_value": "meet"
+        },
+        {
+          "id": "saved_meetings",
+          "type": "text",
+          "name": "Saved meetings",
+          "description": "List of meetings in the format of keys and values separate by colon and pairs separate by semi-colon: name:meet_id;name2:meet_id2",
+          "default_value": "example1:xxx-xxxx-xxx;example2:xxx-xxxx-xxx"
+        }
+    ]
+}
